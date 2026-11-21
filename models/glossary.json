@@ -1,0 +1,58 @@
+{
+  "Supplier": {
+    "definition": "Organization that supplies purchased components to ForgeWorks.",
+    "owner": "Procurement"
+  },
+  "Component": {
+    "definition": "Purchased item used in manufacturing a product.",
+    "owner": "Engineering"
+  },
+  "Product": {
+    "definition": "Finished item ForgeWorks sells, built from components listed in its bill of materials.",
+    "owner": "Engineering"
+  },
+  "Customer": {
+    "definition": "Organization purchasing industrial equipment from ForgeWorks.",
+    "owner": "Sales Operations"
+  },
+  "SalesOrder": {
+    "definition": "Customer commercial commitment recorded in the sales system.",
+    "owner": "Sales Operations"
+  },
+  "SalesOrderLine": {
+    "definition": "Individual product and quantity within a sales order.",
+    "owner": "Sales Operations"
+  },
+  "Shipment": {
+    "definition": "Dispatch of goods against one sales order; carries its own fee at shipment grain.",
+    "owner": "Logistics"
+  },
+  "Net order value": {
+    "definition": "Line quantity times unit price minus line discount, summed at order-line grain.",
+    "owner": "Finance"
+  },
+  "Open order value": {
+    "definition": "Approved net line value for currently open sales orders in the educational model.",
+    "owner": "Finance"
+  },
+  "Shipping fees": {
+    "definition": "Fees charged per shipment, summed at shipment grain and never through order lines.",
+    "owner": "Logistics"
+  },
+  "Connected exposure": {
+    "definition": "Net value of open sales order lines whose product uses a specified component. A structural fact at order-line grain; not a delay, loss or risk prediction.",
+    "owner": "Operations Analytics"
+  },
+  "Component shortfall": {
+    "definition": "Units of a component required by open connected lines minus units on hand, floored at zero. A screen on a snapshot, not an allocation.",
+    "owner": "Operations"
+  },
+  "Timing slack": {
+    "definition": "Promised day minus the delayed component's revised arrival day. Ignores production and transit lead time.",
+    "owner": "Operations"
+  },
+  "Recovery action": {
+    "definition": "A proposed operational intervention subject to feasibility and approval.",
+    "owner": "Operations"
+  }
+}

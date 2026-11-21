@@ -1,0 +1,5 @@
+order_id,action_taken,actual_delay_days,actual_recovery_cost_usd,delivered_on_time
+SO-104,EXPEDITE,0,180,yes
+SO-105,NORMAL,4,0,no
+SO-106,NORMAL,0,0,yes
+SO-107,EXPEDITE,0,160,yes

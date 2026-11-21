@@ -1,0 +1,42 @@
+========================================================================
+Part 1 of 10 · Clean Data Is Not Business Understanding
+ForgeWorks Manufacturing is fictional; every figure comes from data/.
+========================================================================
+
+-- Every order: four orders, five order lines --------------------------
+   order   line  product  customer               net value  status
+   ------  ----  -------  ---------------------  ---------  ---------
+   SO-104  1     PMP-7    Northstar Waterworks   2,300      open
+   SO-104  2     VAL-2    Northstar Waterworks   600        open
+   SO-105  1     PMP-8    Harbor Utilities       1,650      open
+   SO-106  1     PMP-7    Delta Process Systems  1,200      fulfilled
+   SO-107  1     VAL-2    Delta Process Systems  1,650      open
+   CMP-9 (the delayed impeller) is used in: PMP-7, PMP-8. Not in VAL-2.
+
+-- One question, four answers: how much business is exposed to CMP-9? --
+   what was summed                         total      why it differs
+   --------------------------------------  ---------  ---------------------------
+   every order line                        USD 7,400  includes fulfilled SO-106
+   open orders only                        USD 6,200  includes valve order SO-107
+   open orders containing a CMP-9 product  USD 4,550  counts SO-104's valve line
+   open order lines that use CMP-9         USD 3,950  structural exposure
+   Each step down applies one piece of meaning: a definition, a relationship, a grain.
+
+-- The join that runs and lies: shipping fees --------------------------
+   method                                total fees
+   ------------------------------------  ----------
+   summed at shipment grain (certified)  USD 415
+   orders JOIN lines JOIN shipments      USD 535
+   Difference USD 120: SO-104 has two lines, so its USD 120 fee is counted twice.
+   customer  net value  fees (joined)  orders (joined)
+   --------  ---------  -------------  ---------------
+   C-101     2,900      240            2
+   C-102     1,650      75             1
+   C-103     2,850      220            2
+   Net value is right in every row, which is why the query passes a spot check.
+
+-- What the data can and cannot say at 10:00 on Monday -----------------
+   known:    SO-104 line 1 (PMP-7) depends on CMP-9, USD 2,300
+   known:    SO-105 line 1 (PMP-8) depends on CMP-9, USD 1,650
+   not known from the dependency alone: which line will be late (Part 8 screens stock and dates)
+   undefined: expected loss; no approved model exists

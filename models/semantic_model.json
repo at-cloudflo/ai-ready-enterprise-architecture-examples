@@ -1,0 +1,74 @@
+{
+  "version": "1.1",
+  "domain": "ForgeWorks",
+  "purpose": "Illustrative certified semantic catalog; deliberately limited compiler.",
+  "metrics": {
+    "net_order_value": {
+      "description": "Line quantity times unit price minus line discount",
+      "base_grain": "order_id,line_id",
+      "owner": "Finance",
+      "unit": "USD"
+    },
+    "open_order_value": {
+      "description": "Net line value for order_status=open",
+      "base_grain": "order_id,line_id",
+      "owner": "Finance",
+      "unit": "USD",
+      "certified_filter": "order_status = 'open'"
+    },
+    "orders_count": {
+      "description": "Distinct sales orders",
+      "base_grain": "order_id",
+      "owner": "Sales Operations",
+      "unit": "count"
+    },
+    "shipping_fees": {
+      "description": "Shipment-level shipping fees; do not sum after order-line join",
+      "base_grain": "shipment_id",
+      "owner": "Logistics",
+      "unit": "USD"
+    }
+  },
+  "dimensions": {
+    "customer_id": {
+      "source": "orders.customer_id",
+      "identity": true
+    },
+    "order_id": {
+      "source": "orders.order_id",
+      "identity": true
+    }
+  },
+  "allowed_order_statuses": [
+    "open",
+    "fulfilled"
+  ],
+  "notes": [
+    "A certifying steward must validate formulas for actual production usage.",
+    "Do not interpret all structurally connected open-order value as expected financial loss.",
+    "No free-form SQL is accepted from users.",
+    "plan_contract documents what forgeworks.semantics.execute_plan accepts; it adds no metric, dimension or filter."
+  ],
+  "plan_contract": {
+    "fields": [
+      "metrics",
+      "group_by",
+      "filters"
+    ],
+    "group_by": "at most one dimension, shared by every requested metric",
+    "filters": [
+      "order_status"
+    ],
+    "composition": "each metric is evaluated at its own base grain, then results are merged on the shared dimension"
+  },
+  "changelog": [
+    {
+      "version": "1.0",
+      "change": "Four certified metrics, two dimensions, two order statuses."
+    },
+    {
+      "version": "1.1",
+      "change": "Documented the query-plan contract and the certified filter of open_order_value. No metric, dimension, filter or formula changed; every certified total is unchanged."
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+component_id,component_name,supplier_id,expected_day,delay_days
+CMP-9,High precision impeller,SUP-A,12,10
+CMP-4,Control board,SUP-B,10,0
+CMP-2,Alloy housing,SUP-C,13,0

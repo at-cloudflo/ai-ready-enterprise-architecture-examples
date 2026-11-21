@@ -1,0 +1,98 @@
+{
+  "version": "1.1",
+  "domain": "ForgeWorks manufacturing",
+  "description": "Educational competency-question-oriented business ontology kept as a validated JSON catalog; not OWL/RDF and not a reasoner.",
+  "classes": [
+    "Supplier",
+    "Component",
+    "Product",
+    "Customer",
+    "SalesOrder",
+    "SalesOrderLine",
+    "Shipment"
+  ],
+  "keys": {
+    "Supplier": "suppliers.supplier_id",
+    "Component": "components.component_id",
+    "Product": "products.product_id",
+    "Customer": "customers.customer_id",
+    "SalesOrder": "orders.order_id",
+    "SalesOrderLine": "order_lines.order_id+line_id",
+    "Shipment": "shipments.shipment_id"
+  },
+  "relationships": [
+    {
+      "from": "Supplier",
+      "predicate": "SUPPLIES",
+      "to": "Component",
+      "cardinality": "one-to-many",
+      "source": "components.supplier_id",
+      "impact_direction": "forward",
+      "status": "approved"
+    },
+    {
+      "from": "Component",
+      "predicate": "USED_IN",
+      "to": "Product",
+      "cardinality": "many-to-many",
+      "source": "bom.component_id+product_id",
+      "impact_direction": "forward",
+      "status": "approved"
+    },
+    {
+      "from": "Customer",
+      "predicate": "PLACES",
+      "to": "SalesOrder",
+      "cardinality": "one-to-many",
+      "source": "orders.customer_id",
+      "impact_direction": "reverse",
+      "status": "approved"
+    },
+    {
+      "from": "SalesOrder",
+      "predicate": "HAS_LINE",
+      "to": "SalesOrderLine",
+      "cardinality": "one-to-many",
+      "source": "order_lines.order_id+line_id",
+      "impact_direction": "reverse",
+      "status": "approved"
+    },
+    {
+      "from": "SalesOrderLine",
+      "predicate": "REFERENCES",
+      "to": "Product",
+      "cardinality": "many-to-one",
+      "source": "order_lines.product_id",
+      "impact_direction": "reverse",
+      "status": "approved"
+    },
+    {
+      "from": "Shipment",
+      "predicate": "FULFILLS",
+      "to": "SalesOrder",
+      "cardinality": "many-to-one",
+      "source": "shipments.order_id",
+      "impact_direction": "reverse",
+      "status": "approved"
+    }
+  ],
+  "competency_questions": [
+    "Which open sales order lines are structurally dependent on a delayed component?",
+    "What is the certified open-order value by customer?"
+  ],
+  "guardrails": [
+    "A dependency path is not proof of lateness.",
+    "Supplier, customer and order identity must be verified against authoritative source keys.",
+    "impact_direction states which way a disruption propagates along a relationship; it is a steward decision, not something to infer from the data."
+  ],
+  "changelog": [
+    {
+      "version": "1.0",
+      "change": "Seven classes and six approved relationships."
+    },
+    {
+      "version": "1.1",
+      "change": "Added class keys, relationship cardinality and impact_direction; USED_IN source names its columns. No class or relationship added or removed."
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+order_id,line_id,product_id,quantity,unit_price_usd,discount_usd
+SO-104,1,PMP-7,2,1200,100
+SO-104,2,VAL-2,1,600,0
+SO-105,1,PMP-8,1,1800,150
+SO-106,1,PMP-7,1,1200,0
+SO-107,1,VAL-2,3,600,150

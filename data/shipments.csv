@@ -1,0 +1,5 @@
+shipment_id,order_id,shipping_fee_usd,shipment_status
+SH-1,SO-104,120,pending
+SH-2,SO-105,75,pending
+SH-3,SO-106,80,delivered
+SH-4,SO-107,140,pending

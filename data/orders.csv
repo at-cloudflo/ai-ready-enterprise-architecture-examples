@@ -1,0 +1,5 @@
+order_id,customer_id,order_status,promised_day
+SO-104,C-101,open,18
+SO-105,C-102,open,22
+SO-106,C-103,fulfilled,9
+SO-107,C-103,open,20
