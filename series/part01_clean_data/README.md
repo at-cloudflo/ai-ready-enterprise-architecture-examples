@@ -1,6 +1,6 @@
 # Part 1 — Clean Data Is Not Business Understanding
 
-Companion code for *Clean Data Is Not Business Understanding*, Part 1 of *Beyond the Data Platform: Engineering the AI-Ready Enterprise*. One question about the delayed impeller CMP-9 produces four totals from one clean warehouse.
+Companion code for [*Clean Data Is Not Business Understanding*](https://medium.com/@alitlili/clean-data-is-not-business-understanding-324dd43847ea), Part 1 of *Beyond the Data Platform: Engineering the AI-Ready Enterprise*. One question about the delayed impeller CMP-9 produces four totals from one clean warehouse.
 
 ```bash
 python3 -m series.part01_clean_data

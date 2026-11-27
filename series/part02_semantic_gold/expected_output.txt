@@ -1,0 +1,45 @@
+========================================================================
+Part 2 of 10 · ELTM and the Governed Semantic Gold Layer
+ForgeWorks Manufacturing is fictional; every figure comes from data/.
+========================================================================
+
+-- One join across three grains ----------------------------------------
+   customer  net order value  shipping fees  orders
+   --------  ---------------  -------------  ------
+   C-101     2900             240            2
+   C-102     1650             75             1
+   C-103     2850             220            2
+   C-101 is wrong in two of three columns: fees 240 (true 120), orders 2 (true 1).
+
+-- What the model step produces: one certified measure -----------------
+   {
+     "shipping_fees": {
+       "description": "Shipment-level shipping fees; do not sum after order-line join",
+       "base_grain": "shipment_id",
+       "owner": "Logistics",
+       "unit": "USD"
+     }
+   }
+   Semantic model 1.1: 4 measures, dimensions ['customer_id', 'order_id'], filter order_status.
+
+-- A typed plan, answered one query per grain and merged ---------------
+   plan = {"metrics": ["net_order_value", "shipping_fees", "orders_count"], "group_by": "customer_id"}
+   customer  net order value  shipping fees  orders
+   --------  ---------------  -------------  ------
+   C-101     2900             120            1
+   C-102     1650             75             1
+   C-103     2850             220            2
+   metric           base grain        certified filter
+   ---------------  ----------------  ----------------
+   net_order_value  order_id,line_id  —
+   shipping_fees    shipment_id       —
+   orders_count     order_id          —
+   caller finance-analyst, scope all, model version 1.1
+
+-- Refusal is part of the contract -------------------------------------
+   {"metrics": ["expected_loss"]}
+     -> UnmodeledQuestion: Unmodeled metric: expected_loss
+   {"metrics": ["net_order_value"], "group_by": "product_id"}
+     -> UnmodeledQuestion: Unsupported dimension: product_id
+   {"metrics": ["net_order_value"], "sql": "SELECT 1"}
+     -> UnmodeledQuestion: Unsupported plan field: sql

@@ -24,8 +24,8 @@ python3 -m series.part01_clean_data
 
 | Part | Article | Code | Run |
 |---|---|---|---|
-| 1 | Clean Data Is Not Business Understanding | [`series/part01_clean_data`](series/part01_clean_data/) | `python3 -m series.part01_clean_data` |
-| 2 | ELTM and the Governed Semantic Gold Layer | coming with the article | |
+| 1 | [Clean Data Is Not Business Understanding](https://medium.com/@alitlili/clean-data-is-not-business-understanding-324dd43847ea) | [`series/part01_clean_data`](series/part01_clean_data/) | `python3 -m series.part01_clean_data` |
+| 2 | ELTM and the Governed Semantic Gold Layer | [`series/part02_semantic_gold`](series/part02_semantic_gold/) | `python3 -m series.part02_semantic_gold` |
 | 3 | Ontology Is Not a Graph Database | coming with the article | |
 | 4 | Can AI Discover an Enterprise Ontology? | coming with the article | |
 | 5 | When Do You Actually Need a Knowledge Graph? | coming with the article | |
