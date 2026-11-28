@@ -1,6 +1,6 @@
 # Part 2 — ELTM and the Governed Semantic Gold Layer
 
-Companion code for *ELTM and the Governed Semantic Gold Layer*, Part 2 of *Beyond the Data Platform: Engineering the AI-Ready Enterprise*. Fan-out, a certified model entry, a typed plan compiled one query per grain, and refusal.
+Companion code for [*ELTM and the Governed Semantic Gold Layer*](https://medium.com/@alitlili/eltm-and-the-governed-semantic-gold-layer-cad73454461d), Part 2 of *Beyond the Data Platform: Engineering the AI-Ready Enterprise*. Fan-out, a certified model entry, a typed plan compiled one query per grain, and refusal.
 
 ```bash
 python3 -m series.part02_semantic_gold
